@@ -1,0 +1,40 @@
+{
+	"name": "jser",
+	"private": true,
+	"npmClient": "yarn",
+	"useWorkspaces": true,
+	"scripts": {
+		"ls-lint": "ls-lint",
+		"bootstrap": "npx lerna bootstrap",
+		"build:vue": "npx lerna build --scope={sub_vue, main}",
+		"serve": "npx lerna run serve",
+		"commit": "git-cz",
+		"diff": "npx lerna diff",
+		"clean": "npx lerna clean",
+		"new-version": "npx lerna version --conventional-commits --yes"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-lerna-changelog"
+		}
+	},
+	"gitHooks": {
+		"pre-commit": "ls-lint && lint-staged",
+		"commit-msg": "commitlint -e $GIT_PARAMS"
+	},
+	"lint-staged": {
+		"*.{js,vue,ts}": [
+			"git add"
+		]
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^12.0.1",
+		"@commitlint/config-conventional": "^12.0.1",
+		"@ls-lint/ls-lint": "^1.9.2",
+		"commitizen": "^4.2.3",
+		"husky": "^5.1.3",
+		"lerna": "^4.0.0",
+		"lint-staged": "^10.5.4",
+		"yorkie": "^2.0.0"
+	}
+}
