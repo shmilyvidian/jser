@@ -2,7 +2,7 @@ const http = require('http')
 const context = require('./context')
 const request = require('./request')
 const response = require('./response')
-class SS {
+class VKoa {
     constructor(){
         this.middlewares = []
     }
@@ -12,6 +12,7 @@ class SS {
             function dispatch(i){
                 let fn = middlewares[i]
                 if(!fn){
+                    console.log(ctx,'ctx');
                     return Promise.resolve()
                 }
                 return Promise.resolve(
@@ -43,7 +44,6 @@ class SS {
         ctx.res = ctx.response.res = res
         return ctx
     }
-
 }
 
-module.exports = SS
+module.exports = VKoa
