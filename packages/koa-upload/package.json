@@ -1,0 +1,19 @@
+{
+  "name": "koa-upload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shmilyvidian",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.1",
+    "koa-static": "^5.0.0"
+  },
+  "devDependencies": {
+    "koa-body": "^4.2.0"
+  }
+}
