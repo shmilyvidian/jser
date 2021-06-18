@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const { writeFile } = require('./utils/file');
-const { evaluateScript } = require('./utils/evaluateScript')
+const { evaluate } = require('./utils/evaluate')
 const { account, password } = require('./config');
 (async () => {
     const browser = await puppeteer.launch({
@@ -17,12 +17,13 @@ const { account, password } = require('./config');
         waitUntil: 'load'
     });
 
-    await page.screenshot({path: 'example.png'});//截个图
+    // await page.screenshot({path: 'example.png'});//截个图
    
    
-    let cookie = await  evaluateScript(page, () => document.cookie)
-    // page.evaluate(() => document.cookie);
+    // let cookie =  await evaluate(page, () => document.cookie);
+    await page.evaluate(() => document.cookie);
     
-    writeFile('/test.txt', String(cookie))
+    const token = `export default '${cookie}'`
+    writeFile('/token.js', token)
     await browser.close();//关掉浏览器
 })();
